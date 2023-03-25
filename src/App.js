@@ -1,6 +1,6 @@
 function App() {
   return (
-    <h1>Welcome  to react</h1>
+    <h1 className="text-center text-danger">Welcome  to React</h1>
   );
 }
 
