@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-toastify/dist/ReactToastify.css';
+import'./myicon/fontawesome-free-6.2.1-web/css/all.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
