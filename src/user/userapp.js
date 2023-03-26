@@ -5,10 +5,10 @@ import Publicheader from "./publicheader";
 const UserApp = () => {
     return (
         <>
+            <Publicheader />
             <Myhome />
-            <Login/>
-            <Mycart/>
-            <Publicheader/>
+            <Login />
+            <Mycart />
         </>
     )
 }
