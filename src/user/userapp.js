@@ -2,7 +2,7 @@ import Myhome from "./home";
 import Login from "./login";
 import Mycart from "./cart";
 import Publicheader from "./publicheader";
-const userApp = () => {
+const UserApp = () => {
     return (
         <>
             <Myhome />
@@ -12,4 +12,4 @@ const userApp = () => {
         </>
     )
 }
-export default userApp;
+export default UserApp;
