@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Publicheader = () => {
     return (
         <nav className="navbar navbar-expand-lg bg-dark p-3 sticky-top">
@@ -9,13 +11,13 @@ const Publicheader = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item ps-5">
-                            <a className="nav-link text-white" aria-current="page" href="#">Shopping</a>
+                            <Link className="nav-link text-white" aria-current="page" to="#">Shopping</Link>
                         </li>
                         <li className="nav-item ps-5">
-                            <a className="nav-link text-white" href="#">My Cart</a>
+                            <Link className="nav-link text-white" to="/cart">My Cart</Link>
                         </li>
                         <li className="nav-item ps-5">
-                            <a className="nav-link text-white" href="#">Login</a>
+                            <Link className="nav-link text-white" to="/login">Login</Link>
                         </li>
                     </ul>
                 </div>

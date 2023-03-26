@@ -9,8 +9,8 @@ const UserApp = () => {
             <Publicheader />
             <Routes>
                 <Route exact path="/" element={<Myhome />} />
-                <Route exact path="/" element={<Login />} />
-                <Route exact path="/" element={<Mycart />} />
+                <Route exact path="/login" element={<Login />} />
+                <Route exact path="/cart" element={<Mycart />} />
             </Routes>
         </HashRouter >
     )
