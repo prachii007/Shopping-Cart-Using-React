@@ -12,6 +12,9 @@ const Myhome = () => {
         getProduct();
     }, [1]);
 
+    const addtocart = (product) => {
+        console.log(product);
+    }
     return (
         <main>
             <section id="banner">React Shopping App</section>
