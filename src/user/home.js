@@ -13,7 +13,18 @@ const Myhome = () => {
     }, [1]);
 
     const addtocart = (product) => {
-        console.log(product);
+        product["qty"] = 1;
+        let url = "http://localhost:1234/cart";
+        let postOption = {
+            headers: { 'Content-Type': 'application/json' },
+            method: "POST",
+            body: JSON.stringify(product)
+        };
+        fetch(url, postOption)
+            .then(response => response.json)
+            .then(serverStatus=>{
+                alert("Item added in cart");
+            })
     }
     return (
         <main>
