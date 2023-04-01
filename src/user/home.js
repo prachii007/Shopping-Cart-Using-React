@@ -29,7 +29,7 @@ const Myhome = () => {
                                             <ins className="text-primary m-3">Rs. {product.price}</ins>
                                         </h5>
                                         <p>{product.details}</p>
-                                        <button className="btn btn-danger btn-sm">Add to Cart</button>
+                                        <button onClick={addtocart.bind(this, product)} className="btn btn-danger btn-sm">Add to Cart</button>
                                     </div>
                                 </div>
                             )
