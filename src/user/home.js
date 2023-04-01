@@ -23,7 +23,12 @@ const Myhome = () => {
                                 <div className="col-lg-3 mb-5" key={index}>
                                     <div className="p-3">
                                         <h2 className="text-primary">{product.name}</h2>
-                                        <img className="rounded shadow" src={product.photo} height="200" width="100%"/>
+                                        <img className="rounded shadow" src={product.photo} height="200" width="100%" />
+                                        <h5 className="m-3">
+                                            <del className="text-danger m-3">Rs. {product.price + product.price * 10 / 100}</del>
+                                            <ins className="text-primary m-3">Rs. {product.price}</ins>
+                                        </h5>
+                                        <p>{product.details}</p>
                                     </div>
                                 </div>
                             )
