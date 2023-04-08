@@ -27,7 +27,7 @@ const Adminheader = () => {
                                 Add Products</Link>
                         </li>
                         <li className="nav-item ps-5">
-                            <a className="nav-link text-danger"><i className="fa fa-power-off"></i>
+                            <a onClick={logout} className="nav-link text-danger">Welcome - {localStorage.getItem("adminname")}<i className="fa fa-power-off"></i>
                                 Welcome Admin</a>
                         </li>
                     </ul>
@@ -37,3 +37,8 @@ const Adminheader = () => {
     )
 }
 export default Adminheader;
+
+const logout = () => {
+    localStorage.clear();
+    window.location.reload();
+}
