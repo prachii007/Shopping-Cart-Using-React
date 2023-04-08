@@ -3,7 +3,7 @@ import AdminApp from "./admin/adminapp";
 function App() {
   return (
     <>
-      <UserApp />
+      <AdminApp />
     </>
   );
 }
