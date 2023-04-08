@@ -3,3 +3,8 @@ import Mydashboard from "./dashboard";
 import Myorder from "./order";
 import Myproduct from "./product";
 import Newproduct from "./newproduct";
+
+const AdminApp =()=>{
+    
+}
+export default AdminApp;
