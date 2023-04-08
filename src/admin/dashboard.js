@@ -1,0 +1,7 @@
+const Mydashboard = () => {
+    return (
+        <h1>Dashboard</h1>
+    )
+
+}
+export default Mydashboard;
