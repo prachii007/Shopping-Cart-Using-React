@@ -7,7 +7,20 @@ const Login = () => {
         if (username == "" || pass == "") {
             updatemsg("Empty Email or Password")
         } else {
-            updatemsg("Please wait Validating...")
+            updatemsg("Please wait Validating...");
+            let url = "http://localhost:1234/account?email=" + username + "&password=" + pass;
+            fetch(url)
+                .then(response => response.json())
+                .then(userinfo => {
+                    if (userinfo.length > 0) {
+                        updatemsg("Success : Redirecting...");
+                        localStorage.setItem("adminid", userinfo[0].id);
+                        localStorage.setItem("adminname", userinfo[0].fullname);
+                        window.location.reload(); //refresh the current page
+                    } else {
+                        updatemsg("Fail : Invalid Email or Password...");
+                    }
+                })
         }
     }
     return (
@@ -23,13 +36,13 @@ const Login = () => {
                         <div className="card-body">
                             <div className="mb-3">
                                 <label>Email ID</label>
-                                <input className="form-control" type="text" 
-                                onChange={obj=>pickUsername(obj.target.value)}/>
+                                <input className="form-control" type="text"
+                                    onChange={obj => pickUsername(obj.target.value)} />
                             </div>
                             <div className="mb-3">
                                 <label>Password</label>
                                 <input className="form-control" type="password"
-                                onChange={obj=>pickPassword(obj.target.value)} />
+                                    onChange={obj => pickPassword(obj.target.value)} />
                             </div>
                         </div>
                         <div className="card-footer text-center">
