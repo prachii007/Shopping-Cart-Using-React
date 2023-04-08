@@ -7,12 +7,12 @@ import Adminheader from "./adminheader";
 
 const AdminApp =()=>{
     <HashRouter>
-    <Publicheader />
+    <Adminheader />
     <Routes>
         <Route exact path="/" element={<Mydashboard />} />
-        <Route exact path="/login" element={<Myorder />} />
-        <Route exact path="/cart" element={<Myproduct />} />
-        <Route exact path="/cart" element={<Newproduct />} />
+        <Route exact path="/order" element={<Myorder />} />
+        <Route exact path="/product" element={<Myproduct />} />
+        <Route exact path="/addproduct" element={<Newproduct />} />
 
     </Routes>
 </HashRouter >
