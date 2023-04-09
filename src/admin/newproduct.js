@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 const Newproduct = () => {
+    let [pname, pickName] = useState("");
+    let [pprice, pickPrice] = useState("");
+    let [pphoto, pickPhoto] = useState("");
+    let [pdetails, pickDetails] = useState("");
     
     return (
         <section className="container mt-4">
