@@ -5,7 +5,7 @@ const Myhome = () => {
         fetch("http://localhost:1234/product")
             .then(response => response.json())
             .then(productArray => {
-                updateProduct(productArray);
+                updateProduct(productArray.reverse());
             })
     }
     useEffect(() => {
