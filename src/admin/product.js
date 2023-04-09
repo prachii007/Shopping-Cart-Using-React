@@ -20,9 +20,9 @@ const Myproduct = () => {
             <div className="row">
                 <div className="col-lg-12">
                     <h1 className="text-center">Product List: {allproduct.length}</h1>
-                    <table className="table table-bordered mt-4">
+                    <table className="table shadow-lg mt-4">
                         <thead>
-                            <tr className="bg-light text-primary shadow-lg">
+                            <tr className="bg-light text-primary text-center ">
                                 <th>ID</th>
                                 <th>Product Name</th>
                                 <th>Price</th>
@@ -41,8 +41,8 @@ const Myproduct = () => {
                                             <td>{product.price}</td>
                                             <td>{product.details}</td>
                                             <td><img src={product.photo} height="50" width="50" /></td>
-                                            <td><button className="btn btn-danger btn-sm">
-                                                <i className="fa fa-trash"></i> Delete</button></td>
+                                            <td className="text-center"><button className="btn btn-danger btn-sm">
+                                                <i className="fa fa-trash"></i> </button></td>
                                         </tr>
                                     )
                                 })
