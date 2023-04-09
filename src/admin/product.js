@@ -16,7 +16,42 @@ const Myproduct = () => {
 
     }, [1]);
     return (
-        <h1>Product List : {allproduct.length}</h1>
+        <section className="container mt-4">
+            <div className="row">
+                <div className="col-lg-12">
+                    <h1 className="text-center">Product List: {allproduct.length}</h1>
+                    <table className="table table-bordered mt-4">
+                        <thead>
+                            <tr className="bg-light text-primary shadow-lg">
+                                <th>ID</th>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Details</th>
+                                <th>Photo</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                allproduct.map((product, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td>{product.id}</td>
+                                            <td>{product.name}</td>
+                                            <td>{product.price}</td>
+                                            <td>{product.details}</td>
+                                            <td><img src={product.photo} height="50" width="50" /></td>
+                                            <td><button className="btn btn-danger btn-sm">
+                                                <i className="fa fa-trash"></i> Delete</button></td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
     )
 
 }
