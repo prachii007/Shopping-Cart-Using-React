@@ -8,7 +8,7 @@ const Myproduct = () => {
         fetch(url)
             .then(response => response.json())
             .then(productArray => {
-                updateProduct(productArray);
+                updateProduct(productArray.reverse()); //reverses the order of the array
             })
     }
     useEffect(() => {
