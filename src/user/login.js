@@ -14,7 +14,7 @@ const Login = () => {
                 .then(userinfo => {
                     if (userinfo.length > 0) {
                         updatemsg("Success : Redirecting...");
-                        localStorage.setItem("adminid", userinfo[0].id);
+                        localStorage.setItem("sellerid", userinfo[0].id);
                         localStorage.setItem("adminname", userinfo[0].fullname);
                         window.location.reload(); //refresh the current page
                     } else {
