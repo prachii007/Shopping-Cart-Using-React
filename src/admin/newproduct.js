@@ -8,7 +8,28 @@ const Newproduct = () => {
 
     const save = () => {
         let sellerid = localStorage.getItem("sellerid");
-        alert(pname + pprice + pdetails + pphoto)
+        let url = "http://localhost:1234/product";
+        let pinfo = {
+            "name": pname,
+            "price": pprice,
+            "photo": pphoto,
+            "details": pdetails,
+            "seller": sellerid
+        };
+        let postoption = {
+            headers: { 'Content-Type': 'application/json' },
+            method: "POST",
+            body: JSON.stringify(pinfo)
+        }
+        fetch(url, postoption)
+            .then(response => response.json())
+            .then(serverRes => {
+                toast(pname + " Saved Successfully")
+                pickName("");
+                pickPrice("");
+                pickDetails("");
+                pickPhoto("");
+            })
     }
     return (
         <section className="container mt-4">
