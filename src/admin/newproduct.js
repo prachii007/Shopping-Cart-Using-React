@@ -40,14 +40,14 @@ const Newproduct = () => {
                         <label>Enter Product Details</label>
                         <textarea type="text" className="form-control"
                             value={pdetails} onChange={obj => pickDetails(obj.target.value)}>
-                    </textarea>
+                        </textarea>
+                    </div>
+                    <div className="text-center">
+                        <button onClick={save} className="btn btn-danger">Save Product</button>
+                    </div>
                 </div>
-                <div className="text-center">
-                    <button onClick={save} className="btn btn-danger">Save Product</button>
-                </div>
+                <div className="col-lg-3"></div>
             </div>
-            <div className="col-lg-3"></div>
-        </div>
         </section >
     )
 
