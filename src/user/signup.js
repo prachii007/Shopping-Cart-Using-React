@@ -4,9 +4,9 @@ const Signup = () => {
     let [fullname, pickFullname] = useState("");
     let [username, pickUsername] = useState("");
     let [pass, pickPassword] = useState("");
-    // const goSignup=()=>{
-
-    // }
+    const goSignup = () => {
+        alert(fullname, username, pass)
+    }
     return (
         <section className="container mt-4">
             <div className="row justify-content-center">
@@ -34,7 +34,7 @@ const Signup = () => {
                             </div>
                         </div>
                         <div className="card-footer text-center">
-                            <button className="btn btn-danger"> Signup <i className="fa fa-arrow-right"></i></button>
+                            <button onClick={goSignup} className="btn btn-danger"> Signup <i className="fa fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </div>
