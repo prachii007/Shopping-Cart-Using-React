@@ -23,7 +23,7 @@ const Signup = () => {
             fetch(url, postOption)
             .then(response => response.json())
             .then(serverRes => {
-                alert("Account created" + serverRes.id)
+                alert(`Welcome ${fullname}! Your account has been created. You can Login now!`)
             })
 
         }
