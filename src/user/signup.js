@@ -20,17 +20,17 @@ const Signup = () => {
                             <div className="mb-3">
                                 <label>Full Name</label>
                                 <input className="form-control" type="text"
-                                />
+                                    onChange={obj => pickFullname(obj.target.value)} />
                             </div>
                             <div className="mb-3">
                                 <label>Email ID</label>
                                 <input className="form-control" type="email"
-                                />
+                                    onChange={obj => pickUsername(obj.target.value)} />
                             </div>
                             <div className="mb-3">
                                 <label>Password</label>
                                 <input className="form-control" type="password"
-                                />
+                                    onChange={obj => pickPassword(obj.target.value)} />
                             </div>
                         </div>
                         <div className="card-footer text-center">
