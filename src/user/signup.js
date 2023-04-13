@@ -58,7 +58,7 @@ const Signup = () => {
                                     onChange={obj => pickUsername(obj.target.value)} />
                             </div>
                             <div className="mb-3">
-                                <label>Password {passMsg}</label>
+                                <label>Password</label>
                                 <input className="form-control" type="password"
                                     onChange={obj => pickPassword(obj.target.value)} />
                             </div>
