@@ -6,7 +6,7 @@ const Signup = () => {
     let [pass, pickPassword] = useState("");
     const goSignup = () => {
         if (username == "" || pass == "" || fullname == "") {
-            updatemsg("Field cannot be left blank")
+            alert("Field cannot be left blank")
         } else {
             updatemsg("Please wait Validating...");
             let url = "http://localhost:1234/account/";
@@ -23,11 +23,12 @@ const Signup = () => {
             fetch(url, postOption)
                 .then(response => response.json())
                 .then(serverRes => {
-                    updatemsg(`Welcome ${fullname}! Your account has been created. You can Login now!`)
+                    alert(`Welcome ${fullname}! Your account has been created. You can Login now!`)
                     let inputs = document.querySelectorAll("input");
                     inputs.forEach(input => input.value = '');
                 })
         }
+        window.location.reload()
     }
     return (
         <section className="container mt-4">
