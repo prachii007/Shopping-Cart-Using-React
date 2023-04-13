@@ -5,7 +5,28 @@ const Signup = () => {
     let [username, pickUsername] = useState("");
     let [pass, pickPassword] = useState("");
     const goSignup = () => {
-        alert(fullname, username, pass)
+        if (username == "" || pass == "" || fullname == "") {
+            updatemsg("Field cannot be left blank")
+        } else {
+            updatemsg("Please wait Validating...");
+            let url = "http://localhost:1234/account/";
+            let adminData = {
+                fullname: fullname,
+                email: username,
+                password: pass
+            }
+            let postOption = {
+                headers: { 'Content-Type': 'application/json' },
+                method: "POST",
+                body: JSON.stringify(adminData)
+            }
+            fetch(url, postOption)
+            .then(response => response.json())
+            .then(serverRes => {
+                alert("Account created" + serverRes.id)
+            })
+
+        }
     }
     return (
         <section className="container mt-4">
