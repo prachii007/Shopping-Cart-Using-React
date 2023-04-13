@@ -19,6 +19,9 @@ const Publicheader = () => {
                         <li className="nav-item ps-5">
                             <Link className="nav-link text-white" to="/login"><i className="fa fa-lock"></i> Login</Link>
                         </li>
+                        <li className="nav-item ps-5">
+                            <Link className="nav-link text-white" to="/signup"><i className="fa fa-lock"></i> Sign Up</Link>
+                        </li>
                     </ul>
                 </div>
             </div>
