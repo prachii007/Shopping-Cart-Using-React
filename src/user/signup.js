@@ -21,11 +21,12 @@ const Signup = () => {
                 body: JSON.stringify(adminData)
             }
             fetch(url, postOption)
-            .then(response => response.json())
-            .then(serverRes => {
-                alert(`Welcome ${fullname}! Your account has been created. You can Login now!`)
-            })
-
+                .then(response => response.json())
+                .then(serverRes => {
+                    alert(`Welcome ${fullname}! Your account has been created. You can Login now!`)
+                    let inputs = document.querySelectorAll("input");
+                    inputs.forEach(input =>  input.value = '');
+                })
         }
     }
     return (
