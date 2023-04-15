@@ -11,10 +11,33 @@ const Myorder = () => {
             })
     }
     useEffect(() => {
-
+        getOrder();
     }, [1]);
     return (
-        <h1>My Order</h1>
+        <section className="container mt-4">
+            <div className="row">
+                <div className="col-lg-12">
+                    <h3 className="text-center">
+                        {allorder.length} : Order Management
+                    </h3>
+                </div>
+            </div>
+            {
+                allorder.map((order, index) => {
+                    return (
+                        <div className="row mb-5" key={index}>
+                            <div className="col-lg-3 border">
+                                <p>{order.customername}</p>
+                                <p>{order.mobile}</p>
+                                <p>{order.email}</p>
+                                <p>{order.address}</p>
+                            </div>
+                            <div className="col-lg-9"></div>
+                        </div>
+                    )
+                })
+            }
+        </section>
     )
 
 }
