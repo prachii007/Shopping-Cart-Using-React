@@ -33,7 +33,7 @@ const Myorder = () => {
                                 <p>{order.address}</p>
                             </div>
                             <div className="col-lg-9">
-                                <h5>Ordered Item : {order.orderItem.length}</h5>
+                                <h5>Ordered Item </h5>
                                 <table className="table">
                                     <thead>
                                         <tr>
@@ -48,19 +48,19 @@ const Myorder = () => {
                                     <tbody>
                                         {
                                             order.orderItem.map((orderinfo, index2) => {
-                                                return (
-                                                    <tr key={index2}>
-                                                        <td>{orderinfo.id}</td>
-                                                        <td>{orderinfo.name}</td>
-                                                        <td>{orderinfo.price}</td>
-                                                        <td>{orderinfo.qty}</td>
-                                                        <td>{orderinfo.price*orderinfo.qty}</td>
-                                                        <td>
-                                                            <img height="50" width="50" src={orderinfo.photo}/>
-                                                        </td>
-
-                                                    </tr>
-                                                )
+                                                if (orderinfo.seller == localStorage.getItem("sellerid"))
+                                                    return (
+                                                        <tr key={index2}>
+                                                            <td>{orderinfo.id}</td>
+                                                            <td>{orderinfo.name}</td>
+                                                            <td>{orderinfo.price}</td>
+                                                            <td>{orderinfo.qty}</td>
+                                                            <td>{orderinfo.price * orderinfo.qty}</td>
+                                                            <td>
+                                                                <img height="50" width="50" src={orderinfo.photo} />
+                                                            </td>
+                                                        </tr>
+                                                    )
                                             })
                                         }
                                     </tbody>
@@ -72,6 +72,5 @@ const Myorder = () => {
             }
         </section>
     )
-
 }
 export default Myorder;
