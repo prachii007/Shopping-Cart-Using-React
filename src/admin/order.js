@@ -32,7 +32,40 @@ const Myorder = () => {
                                 <p>{order.email}</p>
                                 <p>{order.address}</p>
                             </div>
-                            <div className="col-lg-9"></div>
+                            <div className="col-lg-9">
+                                <h5>Ordered Item : {order.orderItem.length}</h5>
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product ID</th>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Total Price</th>
+                                            <th>Photo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            order.orderItem.map((orderinfo, index2) => {
+                                                return (
+                                                    <tr key={index2}>
+                                                        <td>{orderinfo.id}</td>
+                                                        <td>{orderinfo.name}</td>
+                                                        <td>{orderinfo.price}</td>
+                                                        <td>{orderinfo.qty}</td>
+                                                        <td>{orderinfo.price*orderinfo.qty}</td>
+                                                        <td>
+                                                            <img height="50" width="50" src={orderinfo.photo}/>
+                                                        </td>
+
+                                                    </tr>
+                                                )
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     )
                 })
