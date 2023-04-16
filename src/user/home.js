@@ -26,13 +26,26 @@ const Myhome = () => {
                 alert("Item added in cart");
             })
     }
+    let [keyword, updateKeyword] = useState("");
+
     return (
         <main>
             <section id="banner">React Shopping App</section>
             <section className="container mt-4">
-                <div className="row">
+                <div className="row mb-4">
+                     <div className="col-lg-4"></div>
+                     <div className="col-lg-4">
+                        <input onChange={obj=>updateKeyword(obj.target.value)} className="form-control" type="text" placeholder="Search here"/>
+                     </div>
+                     <div className="col-lg-4"></div>
+                </div>
+                <div className="row text-center">
                     {
-                        allproduct.map((product, index) => {
+                        allproduct.filter(post =>{if(post.name.toLowerCase().includes(keyword.toLowerCase()) )
+                            {
+                                     return post;
+                            }
+                           }).map((product, index) => {
                             return (
                                 <div className="col-lg-3 mb-5" key={index}>
                                     <div className="p-4">
