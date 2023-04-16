@@ -43,7 +43,7 @@ const Myhome = () => {
                     {
                         allproduct.filter(post =>{if(post.name.toLowerCase().includes(keyword.toLowerCase()) )
                             {
-                                     return post;
+                                return post;
                             }
                            }).map((product, index) => {
                             return (
