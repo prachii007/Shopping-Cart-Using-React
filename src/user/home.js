@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ReactPaginate from "react-paginate";
 const Myhome = () => {
     let [allproduct, updateProduct] = useState([]);
     const getProduct = () => {
@@ -28,6 +29,16 @@ const Myhome = () => {
     }
     let [keyword, updateKeyword] = useState("");
 
+    //pagination starts
+        const PER_PAGE = 5;
+        const [currentPage, setCurrentPage] = useState(0);
+        function handlePageClick({ selected: selectedPage }) {
+        setCurrentPage(selectedPage)
+        }
+        const offset = currentPage * PER_PAGE;
+        const pageCount = Math.ceil(allproduct.length / PER_PAGE);
+    //pagination ends
+
     return (
         <main>
             <section id="banner">React Shopping App</section>
@@ -45,7 +56,7 @@ const Myhome = () => {
                             {
                                 return post;
                             }
-                           }).map((product, index) => {
+                           }).slice(offset, offset + PER_PAGE).map((product, index) => {
                             return (
                                 <div className="col-lg-3 mb-5" key={index}>
                                     <div className="p-4">
@@ -63,6 +74,27 @@ const Myhome = () => {
                         })
                     }
                 </div>
+                <div className="mb-4 mt-4">
+                        <ReactPaginate
+                            previousLabel={"Previous"}
+                            nextLabel={"Next"}
+                            breakLabel={"..."}
+                            pageCount={pageCount}
+                            marginPagesDisplayed={2}
+                            pageRangeDisplayed={3}
+                            onPageChange={handlePageClick}
+                            containerClassName={"pagination  justify-content-center"}
+                            pageClassName={"page-item"}
+                            pageLinkClassName={"page-link"}
+                            previousClassName={"page-item"}
+                            previousLinkClassName={"page-link"}
+                            nextClassName={"page-item"}
+                            nextLinkClassName={"page-link"}
+                            breakClassName={"page-item"}
+                            breakLinkClassName={"page-link"}
+                            activeClassName={"active primary"}
+                        />
+                    </div>
             </section>
         </main>
     )
