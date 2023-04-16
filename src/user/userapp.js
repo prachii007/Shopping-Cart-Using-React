@@ -14,7 +14,8 @@ const UserApp = () => {
                 <Route exact path="/cart" element={<Mycart />} />
                 <Route exact path="/signup" element={<Signup/>} />
             </Routes>
-        </HashRouter >
+            
+        </HashRouter>
     )
 }
 export default UserApp;
