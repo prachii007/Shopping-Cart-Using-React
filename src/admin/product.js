@@ -22,7 +22,7 @@ const Myproduct = () => {
                     <h1 className="text-center">Product List: {allproduct.length}</h1>
                     <table className="table shadow-lg mt-4">
                         <thead>
-                            <tr className="bg-light text-primary text-center ">
+                            <tr className="bg-light text-primary">
                                 <th>ID</th>
                                 <th>Product Name</th>
                                 <th>Price</th>
