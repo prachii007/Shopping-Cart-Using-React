@@ -11,7 +11,7 @@ const Publicheader = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item ps-5">
-                            <Link className="nav-link text-white" aria-current="page" to="#"><i className="fa fa-home"></i> Shopping</Link>
+                            <Link className="nav-link text-white" aria-current="page" to=""><i className="fa fa-home"></i> Shopping</Link>
                         </li>
                         <li className="nav-item ps-5">
                             <Link className="nav-link text-white" to="/cart"><i className="fa fa-shopping-cart"></i>My Cart</Link>
