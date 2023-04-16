@@ -4,6 +4,7 @@ import Login from "./login";
 import Mycart from "./cart";
 import Publicheader from "./publicheader";
 import Signup from "./signup";
+import Myfooter from "./footer";
 const UserApp = () => {
     return (
         <HashRouter>
@@ -14,7 +15,7 @@ const UserApp = () => {
                 <Route exact path="/cart" element={<Mycart />} />
                 <Route exact path="/signup" element={<Signup/>} />
             </Routes>
-            
+            <Myfooter/>
         </HashRouter>
     )
 }
