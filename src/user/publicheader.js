@@ -14,7 +14,7 @@ const Publicheader = () => {
                             <Link className="nav-link text-white" aria-current="page" to=""><i className="fa fa-home"></i> Shopping</Link>
                         </li>
                         <li className="nav-item ps-5">
-                            <Link className="nav-link text-white" to="/cart"><i className="fa fa-shopping-cart"></i>My Cart</Link>
+                            <Link className="nav-link text-white" to="/cart"><i className="fa fa-shopping-cart"></i> My Cart</Link>
                         </li>
                         <li className="nav-item ps-5">
                             <Link className="nav-link text-white" to="/login"><i className="fa fa-lock"></i> Login</Link>
