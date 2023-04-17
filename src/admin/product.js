@@ -13,8 +13,16 @@ const Myproduct = () => {
     }
     useEffect(() => {
         getProduct();
-
     }, [1]);
+    const deleteProduct = (pid) => {
+        let url = "http://localhost:1234/product/" + pid;
+        let postOption = { method: "DELETE" };
+        fetch(url, postOption)
+            .then(response => response.json())
+            .then(serverRes => {
+                getProduct();
+            })
+    }
     return (
         <section className="container mt-4">
             <div className="row">
@@ -41,7 +49,7 @@ const Myproduct = () => {
                                             <td>{product.price}</td>
                                             <td>{product.details}</td>
                                             <td><img src={product.photo} height="50" width="50" /></td>
-                                            <td className="text-center"><button className="btn btn-danger btn-sm">
+                                            <td className="text-center"><button onClick={deleteProduct.bind(this, product.id)} className="btn btn-danger btn-sm">
                                                 <i className="fa fa-trash"></i> </button></td>
                                         </tr>
                                     )
