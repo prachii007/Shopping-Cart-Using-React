@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 const Signup = () => {
     let [msg, updatemsg] = useState("Enter details to create an admin account");
     let [fullname, pickFullname] = useState("");
