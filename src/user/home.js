@@ -36,7 +36,7 @@ const Myhome = () => {
     let [keyword, updateKeyword] = useState("");
 
     //pagination starts
-    const PER_PAGE = 5;
+    const PER_PAGE = 8;
     const [currentPage, setCurrentPage] = useState(0);
     function handlePageClick({ selected: selectedPage }) {
         setCurrentPage(selectedPage)
