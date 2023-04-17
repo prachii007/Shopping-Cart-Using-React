@@ -67,6 +67,8 @@ const Mycart = () => {
             .then(response => response.json())
             .then(serverRes => {
                 alert("Order Received, Order ID:" + serverRes.id)
+                let inputs = document.querySelectorAll(".customerDetail");
+                inputs.forEach(input => input.value = '');
             })
     }
     return (
@@ -79,19 +81,19 @@ const Mycart = () => {
                         <div className="card-body">
                             <div className="mb-3">
                                 <label>Customer Name</label>
-                                <input type="text" className="form-control" onChange={obj => pickName(obj.target.value)} />
+                                <input type="text" className="form-control customerDetail" onChange={obj => pickName(obj.target.value)} />
                             </div>
                             <div className="mb-3">
                                 <label>Mobile No</label>
-                                <input type="tel" className="form-control" onChange={obj => pickMobile(obj.target.value)} />
+                                <input type="tel" className="form-control customerDetail" onChange={obj => pickMobile(obj.target.value)} />
                             </div>
                             <div className="mb-3">
                                 <label>Email ID</label>
-                                <input type="email" className="form-control" onChange={obj => pickEmail(obj.target.value)} />
+                                <input type="email" className="form-control customerDetail" onChange={obj => pickEmail(obj.target.value)} />
                             </div>
                             <div className="mb-3">
                                 <label>Delivery Address</label>
-                                <textarea type="text" className="form-control" onChange={obj => pickAddress(obj.target.value)}></textarea>
+                                <textarea type="text" className="form-control customerDetail" onChange={obj => pickAddress(obj.target.value)}></textarea>
                             </div>
                         </div>
                         <div className="card-footer text-center">
