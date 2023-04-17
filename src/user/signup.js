@@ -4,14 +4,8 @@ const Signup = () => {
     let [fullname, pickFullname] = useState("");
     let [username, pickUsername] = useState("");
     let [pass, pickPassword] = useState("");
-    // let [passMsg, updatePassMsg] = useState("");
 
     const goSignup = () => {
-        // if (pass.length < 8) {
-        //     updatePassMsg("Password is too weak")
-        // } else {
-        //     updatePassMsg("Password is strong")
-        // }
         if (username == "" || pass == "" || fullname == "") {
             alert("Field cannot be left blank")
         } else {
@@ -35,7 +29,6 @@ const Signup = () => {
                     inputs.forEach(input => input.value = '');
                 })
         }
-        // window.location.reload()
     }
     return (
         <section className="container mt-4">
