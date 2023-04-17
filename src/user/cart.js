@@ -70,6 +70,10 @@ const Mycart = () => {
                 //clear input field from the customer's details
                 let inputs = document.querySelectorAll(".customerDetail");
                 inputs.forEach(input => input.value = '');
+                //clear the cart entirely     
+                // for (let i = 1; i <= 10; i++) {
+                //     deleteCart(i)
+                // }
             })
     }
     return (
