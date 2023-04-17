@@ -59,7 +59,7 @@ const Myhome = () => {
                 </div>
                 <div className="row text-center">
                     {/* First filter those elements of the allproduct array that have the name which was typed in the search bar.
-                    Use slice method so that atmost 5 products are visible on the screen.
+                    Use slice method so that atmost 8 products are visible on the screen.
                     Use map method so that those products that pass the test of the filter method are displayed on the webpage
                      */}
                     {
