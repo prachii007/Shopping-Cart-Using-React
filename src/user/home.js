@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 const Myhome = () => {
+    //fetch data of the product array form the api by making a GET Request,
+    //parse the data into json
+    //update the allproduct with the product array received as respone from the api
     let [allproduct, updateProduct] = useState([]);
     const getProduct = () => {
         fetch("http://localhost:1234/product")
@@ -13,8 +16,10 @@ const Myhome = () => {
         getProduct();
     }, [1]);
 
-    const addtocart = (product) => {
-        product["qty"] = 1;
+    const addtocart = (product) => { //product is the individual element of the allproduct array, it an object that has details of each product
+        product["qty"] = 1; //add a new key-value pair to the product object
+        //Make a POST request to the api
+        //Only send the details of those product items that were added to the cart
         let url = "http://localhost:1234/cart";
         let postOption = {
             headers: { 'Content-Type': 'application/json' },
@@ -27,6 +32,7 @@ const Myhome = () => {
                 alert("Item added in cart");
             })
     }
+    //search bar
     let [keyword, updateKeyword] = useState("");
 
     //pagination starts
@@ -46,11 +52,16 @@ const Myhome = () => {
                 <div className="row mb-4">
                     <div className="col-lg-4"></div>
                     <div className="col-lg-4">
+                        {/* capture the words that user types in the search bar.*/}
                         <input onChange={obj => updateKeyword(obj.target.value)} className="form-control" type="text" placeholder="Search here" />
                     </div>
                     <div className="col-lg-4"></div>
                 </div>
                 <div className="row text-center">
+                    {/* First filter those elements of the allproduct array that have the name which was typed in the search bar.
+                    Use slice method so that atmost 5 products are visible on the screen.
+                    Use map method so that those products that pass the test of the filter method are displayed on the webpage
+                     */}
                     {
                         allproduct.filter(post => {
                             if (post.name.toLowerCase().includes(keyword.toLowerCase())) {
@@ -75,6 +86,7 @@ const Myhome = () => {
                     }
                 </div>
                 <div className="mb-4 mt-4">
+                    {/* Pagination code */}
                     <ReactPaginate
                         previousLabel={"Previous"}
                         nextLabel={"Next"}
