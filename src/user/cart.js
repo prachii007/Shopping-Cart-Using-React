@@ -67,6 +67,7 @@ const Mycart = () => {
             .then(response => response.json())
             .then(serverRes => {
                 alert("Order Received, Order ID:" + serverRes.id)
+                //clear input field from the customer's details
                 let inputs = document.querySelectorAll(".customerDetail");
                 inputs.forEach(input => input.value = '');
             })
