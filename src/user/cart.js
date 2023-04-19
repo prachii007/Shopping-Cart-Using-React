@@ -70,7 +70,12 @@ const Mycart = () => {
                 //clear input field from the customer's details
                 let inputs = document.querySelectorAll(".customerDetail");
                 inputs.forEach(input => input.value = '');
-                //clear the cart entirely                    
+                //clear the cart entirely 
+                let idsToDelete = allcart.map(function (el) { return (el.id) });
+                for (let id of idsToDelete) {
+                    deleteCart(id);
+                    getCart();
+                }
             })
     }
     return (
