@@ -3,7 +3,7 @@ const Mycart = () => {
     let [allcart, updateCart] = useState([]);
     const getCart = () => {
         // fetch("http://localhost:1234/cart")
-        fetch("./data.json/cart")
+        fetch("./data.json")
 
             .then(response => response.json())
             .then(productArray => {
