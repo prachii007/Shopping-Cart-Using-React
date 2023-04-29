@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 const Mycart = () => {
     let [allcart, updateCart] = useState([]);
     const getCart = () => {
-        fetch("http://localhost:1234/cart")
+        // fetch("http://localhost:1234/cart")
+        fetch("./data.json/cart")
+
             .then(response => response.json())
             .then(productArray => {
                 updateCart(productArray);
