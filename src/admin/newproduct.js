@@ -72,7 +72,7 @@ const Newproduct = () => {
                     </div>
                     <div className="mb-3">
                         <label>Enter Product Details</label>
-                        <textarea type="text" className="form-control"
+                        <textarea type="text" className="form-control" maxLength={30}
                             value={pdetails} onChange={obj => pickDetails(obj.target.value)}>
                         </textarea>
                     </div>
