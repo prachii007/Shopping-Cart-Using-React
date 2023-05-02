@@ -1,14 +1,21 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Publicheader = () => {
+    const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+
+    const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+    
     return (
         <nav className="navbar navbar-expand-lg bg-dark p-3 sticky-top">
             <div className="container-fluid">
                 <a className="navbar-brand text-white" href="#"><i className="fa fa-shopping-bag fa-lg"></i> Prachi Stores</a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded={!isNavCollapsed ? true : false} aria-label="Toggle navigation"
+                    onClick={handleNavCollapse}>
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item ps-5">
                             <Link className="nav-link text-white" aria-current="page" to="/"><i className="fa fa-home"></i> Shopping</Link>
