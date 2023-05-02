@@ -4,7 +4,7 @@ const Myproduct = () => {
     let [allproduct, updateProduct] = useState([]);
     const getProduct = () => {
         let sellerid = localStorage.getItem("sellerid");
-        let url = "http://localhost:1234/product?seller=" + sellerid;
+        let url = "https://shopping-api-ypz4.onrender.com/product?seller=" + sellerid;
         fetch(url)
             .then(response => response.json())
             .then(productArray => {
@@ -15,7 +15,7 @@ const Myproduct = () => {
         getProduct();
     }, [1]);
     const deleteProduct = (pid) => {
-        let url = "http://localhost:1234/product/" + pid;
+        let url = "https://shopping-api-ypz4.onrender.com/product/" + pid;
         let postOption = { method: "DELETE" };
         fetch(url, postOption)
             .then(response => response.json())
@@ -48,7 +48,7 @@ const Myproduct = () => {
                                             <td>{product.name}</td>
                                             <td>{product.price}</td>
                                             <td>{product.details}</td>
-                                            <td><img src={product.photo} height="50" width="50" /></td>
+                                            <td><img src={product.photo.local ? process.env.PUBLIC_URL + '/' + product.photo.local : product.photo.absolute} height="50" width="50" /></td>
                                             <td className="text-center"><button onClick={deleteProduct.bind(this, product.id)} className="btn btn-danger btn-sm">
                                                 <i className="fa fa-trash"></i> </button></td>
                                         </tr>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 const Mycart = () => {
     let [allcart, updateCart] = useState([]);
     const getCart = () => {
-        fetch("http://localhost:1234/cart")
+        fetch("https://shopping-api-ypz4.onrender.com/cart")
             .then(response => response.json())
             .then(productArray => {
                 updateCart(productArray);
@@ -19,7 +19,7 @@ const Mycart = () => {
             product["qty"] = product.qty + 1;
         }
         if (product.qty > 0) {
-            let url = "http://localhost:1234/cart/" + pid;
+            let url = "https://shopping-api-ypz4.onrender.com/cart/" + pid;
             let postOption = {
                 headers: { 'Content-Type': 'application/json' },
                 method: 'PUT',
@@ -35,7 +35,7 @@ const Mycart = () => {
         }
     }
     const deleteCart = (pid) => {
-        let url = "http://localhost:1234/cart/" + pid;
+        let url = "https://shopping-api-ypz4.onrender.com/cart/" + pid;
         let postOption = { method: "DELETE" };
         fetch(url, postOption)
             .then(response => response.json())
@@ -49,7 +49,7 @@ const Mycart = () => {
     let [email, pickEmail] = useState("");
     let [address, pickAddress] = useState("");
     const save = () => {
-        let url = "http://localhost:1234/order/";
+        let url = "https://shopping-api-ypz4.onrender.com/order/";
         let orderData = {
             //property: variable//
             customername: fullname,
@@ -128,7 +128,7 @@ const Mycart = () => {
                                     return (
                                         <tr key={index} className="text-center">
                                             <td>{cart.id}</td>
-                                            <td className="text-start"><img src={cart.photo} height="50" width="50" className="rounded" /> {cart.name}</td>
+                                            <td className="text-start"><img src={ cart.photo.local ? process.env.PUBLIC_URL + '/' + cart.photo.local : cart.photo.absolute } height="50" width="50" className="rounded" /> {cart.name}</td>
                                             <td>{cart.price}</td>
                                             <td>
                                                 <div className="input-group">

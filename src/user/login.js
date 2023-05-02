@@ -8,7 +8,7 @@ const Login = () => {
             updatemsg("Empty Email or Password")
         } else {
             updatemsg("Please wait Validating...");
-            let url = "http://localhost:1234/account?email=" + username + "&password=" + pass;
+            let url = "https://shopping-api-ypz4.onrender.com/account?email=" + username + "&password=" + pass;
             fetch(url)
                 .then(response => response.json())
                 .then(userinfo => {

@@ -5,14 +5,17 @@ const Newproduct = () => {
     let [pprice, pickPrice] = useState("");
     let [pphoto, pickPhoto] = useState("");
     let [pdetails, pickDetails] = useState("");
+    let [pphotoType, pickPhotoType] = useState("");
 
     const save = () => {
         let sellerid = localStorage.getItem("sellerid");
-        let url = "http://localhost:1234/product";
+        let url = "https://shopping-api-ypz4.onrender.com/product";
         let pinfo = {
             "name": pname,
             "price": pprice,
-            "photo": pphoto,
+            "photo": {
+                [pphotoType]: pphoto
+            },
             "details": pdetails,
             "seller": sellerid
         };
@@ -52,6 +55,16 @@ const Newproduct = () => {
                         <input type="number" className="form-control"
                             value={pprice} onChange={obj => pickPrice(obj.target.value)} />
                     </div>
+                    <div className="mb-3">
+                    <label>
+                     Where is your photo located?
+                    </label>
+                        <select className="form-select" onChange={obj=>pickPhotoType(obj.target.value)}>
+                            <option value="local">Locally On This Website</option>
+                            <option value="absolute">Globally On The Internet</option>
+                        </select>
+                    </div>
+
                     <div className="mb-3">
                         <label>Enter Photo URL</label>
                         <input type="text" className="form-control"

@@ -3,7 +3,7 @@ const Myorder = () => {
     let [allorder, updateOrder] = useState([]);
     const getOrder = () => {
         let sellerid = localStorage.getItem("sellerid");
-        let url = "http://localhost:1234/order";
+        let url = "https://shopping-api-ypz4.onrender.com/order";
         fetch(url)
             .then(response => response.json())
             .then(productArray => {
@@ -57,7 +57,7 @@ const Myorder = () => {
                                                             <td>{orderinfo.qty}</td>
                                                             <td>{orderinfo.price * orderinfo.qty}</td>
                                                             <td>
-                                                                <img height="50" width="50" src={orderinfo.photo} />
+                                                                <img height="50" width="50" src={ orderinfo.photo.local ? process.env.PUBLIC_URL + '/' + orderinfo.photo.local : orderinfo.photo.absolute } />
                                                             </td>
                                                         </tr>
                                                     )

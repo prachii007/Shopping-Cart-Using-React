@@ -6,7 +6,7 @@ const Myhome = () => {
     //update the allproduct with the product array received as respone from the api
     let [allproduct, updateProduct] = useState([]);
     const getProduct = () => {
-        fetch("http://localhost:1234/product")
+        fetch("https://shopping-api-ypz4.onrender.com/product")
             .then(response => response.json())
             .then(productArray => {
                 updateProduct(productArray.reverse());
@@ -20,7 +20,7 @@ const Myhome = () => {
         product["qty"] = 1; //add a new key-value pair to the product object
         //Make a POST request to the api
         //Only send the details of those product items that were added to the cart
-        let url = "http://localhost:1234/cart";
+        let url = "https://shopping-api-ypz4.onrender.com/cart";
         let postOption = {
             headers: { 'Content-Type': 'application/json' },
             method: "POST",
@@ -72,7 +72,7 @@ const Myhome = () => {
                                 <div className="col-lg-3 mb-5" key={index}>
                                     <div className="p-4">
                                         <h2 className="text-primary mb-3">{product.name}</h2>
-                                        <img className="rounded" src={product.photo} height="200" width="100%" />
+                                        <img className="rounded" src={ product.photo.local ? process.env.PUBLIC_URL + '/' + product.photo.local : product.photo.absolute } height="200" width="100%" />
                                         <h5 className="m-3">
                                             <del className="text-danger m-3">Rs. {parseInt(product.price) + parseInt(product.price) * 10 / 100}</del>
                                             <ins className="text-primary m-3">Rs. {product.price}</ins>

@@ -10,7 +10,7 @@ const Signup = () => {
             alert("Field cannot be left blank")
         } else {
             updatemsg("Please wait Validating...");
-            let url = "http://localhost:1234/account/";
+            let url = "https://shopping-api-ypz4.onrender.com/account/";
             let adminData = {
                 fullname: fullname,
                 email: username,

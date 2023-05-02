@@ -5,7 +5,7 @@ const Mydashboard = () => {
 
     const getProduct = () => {
         let sellerid = localStorage.getItem("sellerid");
-        let url = "http://localhost:1234/product?seller=" + sellerid;
+        let url = "https://shopping-api-ypz4.onrender.com/product?seller=" + sellerid;
         fetch(url)
             .then(response => response.json())
             .then(productArray => {
@@ -14,7 +14,7 @@ const Mydashboard = () => {
     }
     const getOrder = () => {
         let sellerid = localStorage.getItem("sellerid");
-        let url = "http://localhost:1234/order";
+        let url = "https://shopping-api-ypz4.onrender.com/order";
         fetch(url)
             .then(response => response.json())
             .then(productArray => {
