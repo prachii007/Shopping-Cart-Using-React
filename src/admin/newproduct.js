@@ -47,7 +47,7 @@ const Newproduct = () => {
                 <div className="col-lg-6">
                     <div className="mb-3">
                         <label>Enter Product Name</label>
-                        <input type="text" className="form-control"
+                        <input type="text" className="form-control" maxLength={16}
                             value={pname} onChange={obj => pickName(obj.target.value)} />
                     </div>
                     <div className="mb-3">
