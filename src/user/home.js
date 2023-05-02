@@ -47,7 +47,7 @@ const Myhome = () => {
 
     return (
         <main>
-            <section id="banner">React Shopping App</section>
+            <section id="banner">Prachi Stores</section>
             <section className="container mt-4">
                 <div className="row mb-4">
                     <div className="col-lg-4"></div>
