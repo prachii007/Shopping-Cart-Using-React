@@ -12,6 +12,7 @@ const Mycart = () => {
     useEffect(() => {
         getCart();
     }, [1]);
+
     let total = 0;
     const one = (pid, product, action) => {
         if (action === "B") {
@@ -36,6 +37,39 @@ const Mycart = () => {
         }
     }
 
+    const sweetAlert = (data) => {
+        Swal.fire({
+            title: "Success",
+            text: data,
+            icon: "success",
+            confirmButtonText: "OK",
+            timer: 7000,
+            timerProgressBar: true
+
+        });
+    }
+
+    const deleteCart = (pid) => {
+        let url = "https://shopping-api-ypz4.onrender.com/cart/" + pid;
+        let postOption = { method: "DELETE" };
+        fetch(url, postOption)
+            .then(response => response.json())
+            .then(serverRes => {
+                // sweetAlert2("Item removed from the cart")
+                getCart(); //reload the list
+            })
+    }
+    //order placing code starts here
+    let [fullname, pickName] = useState("");
+    let [mobile, pickMobile] = useState("");
+    let [mobileErrorMsg, updateMobileErrorMsg] = useState("");
+    let [email, pickEmail] = useState("");
+    let [emailErrorMsg, updateEmailErrorMsg] = useState("");
+    let [address, pickAddress] = useState("");
+
+    let epattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    let mpattern = /^[0]?[6789]\d{9}$/;
+
     const sweetAlert2 = (text) => {
         Swal.fire({
             title: 'Oops...',
@@ -46,50 +80,54 @@ const Mycart = () => {
         })
     }
 
-    const deleteCart = (pid) => {
-        let url = "https://shopping-api-ypz4.onrender.com/cart/" + pid;
-        let postOption = { method: "DELETE" };
-        fetch(url, postOption)
-            .then(response => response.json())
-            .then(serverRes => {
-                sweetAlert2("Item removed from the cart")
-                getCart(); //reload the list
-            })
-    }
-    //order placing code starts here
-    let [fullname, pickName] = useState("");
-    let [mobile, pickMobile] = useState("");
-    let [email, pickEmail] = useState("");
-    let [address, pickAddress] = useState("");
     const save = () => {
-        let url = "https://shopping-api-ypz4.onrender.com/order/";
-        let orderData = {
-            //property: variable//
-            customername: fullname,
-            mobile: mobile,
-            email: email,
-            address: address,
-            orderItem: allcart
-        };
-        let postOption = {
-            headers: { 'Content-Type': 'application/json' },
-            method: "POST",
-            body: JSON.stringify(orderData)
-        };
-        fetch(url, postOption)
-            .then(response => response.json())
-            .then(serverRes => {
-                alert("Order Received, Order ID:" + serverRes.id)
-                //clear input field from the customer's details
-                let inputs = document.querySelectorAll(".customerDetail");
-                inputs.forEach(input => input.value = '');
-                //clear the cart entirely 
-                let idsToDelete = allcart.map(function (el) { return (el.id) });
-                for (let id of idsToDelete) {
-                    deleteCart(id);
-                    getCart();
-                }
-            })
+        let formstatus = true;
+        if (fullname === "" || mobile === "" || email === "" || address === "") {
+            sweetAlert2("All fields are compulsory");
+            formstatus = false;
+        }
+        if (!epattern.test(email)) {
+            updateEmailErrorMsg("Invalid Email ID")
+            formstatus = false;
+        } else {
+            updateEmailErrorMsg("")
+        }
+        if (!mpattern.test(mobile)) {
+            updateMobileErrorMsg("Invalid Mobile No")
+            formstatus = false;
+        } else {
+            updateMobileErrorMsg("")
+        }
+        if (formstatus === true) {
+            let url = "https://shopping-api-ypz4.onrender.com/order/";
+            let orderData = {
+                //property: variable//
+                customername: fullname,
+                mobile: mobile,
+                email: email,
+                address: address,
+                orderItem: allcart
+            };
+            let postOption = {
+                headers: { 'Content-Type': 'application/json' },
+                method: "POST",
+                body: JSON.stringify(orderData)
+            };
+            fetch(url, postOption)
+                .then(response => response.json())
+                .then(serverRes => {
+                    sweetAlert(`Hi ${fullname}! Your order was received. Please shop again with us!`)
+                    //clear input field from the customer's details
+                    let inputs = document.querySelectorAll(".customerDetail");
+                    inputs.forEach(input => input.value = '');
+                    //clear the cart entirely 
+                    let idsToDelete = allcart.map(function (el) { return (el.id) });
+                    for (let id of idsToDelete) {
+                        deleteCart(id);
+                        getCart();
+                    }
+                })
+        }
     }
     return (
         <section className="container mt-4">
@@ -100,19 +138,19 @@ const Mycart = () => {
                         <div className="card-header bg-primary text-white">Customer Details</div>
                         <div className="card-body">
                             <div className="mb-3">
-                                <label>Customer Name</label>
+                                <label>Customer Name <span className="text-danger">*</span></label>
                                 <input type="text" className="form-control customerDetail" onChange={obj => pickName(obj.target.value)} />
                             </div>
                             <div className="mb-3">
-                                <label>Mobile No</label>
+                                <label>Mobile No <span className="text-danger">*</span><span className="text-danger">{mobileErrorMsg}</span></label>
                                 <input type="tel" className="form-control customerDetail" onChange={obj => pickMobile(obj.target.value)} />
                             </div>
                             <div className="mb-3">
-                                <label>Email ID</label>
+                                <label>Email ID <span className="text-danger">*</span><span className="text-danger">{emailErrorMsg}</span></label>
                                 <input type="email" className="form-control customerDetail" onChange={obj => pickEmail(obj.target.value)} />
                             </div>
                             <div className="mb-3">
-                                <label>Delivery Address</label>
+                                <label>Delivery Address <span className="text-danger">*</span></label>
                                 <textarea type="text" className="form-control customerDetail" onChange={obj => pickAddress(obj.target.value)}></textarea>
                             </div>
                         </div>
@@ -126,7 +164,7 @@ const Mycart = () => {
                     <table className="table table-bordered">
                         <thead>
                             <tr className="text-center bg-light text-primary">
-                                <th>Sr No</th>
+                                <th>ID</th>
                                 <th>Product Name</th>
                                 <th>Product Price</th>
                                 <th>Quantity</th>
@@ -141,8 +179,8 @@ const Mycart = () => {
                                     return (
                                         <tr key={index} className="text-center">
                                             <td>{cart.id}</td>
-                                            <td className="text-start"><img src={ cart.photo.local ? process.env.PUBLIC_URL + '/' + cart.photo.local : cart.photo.absolute } height="50" width="50" className="rounded" /> {cart.name}</td>
-                                            <td>{cart.price}</td>
+                                            <td className="text-start"><img src={cart.photo.local ? process.env.PUBLIC_URL + '/' + cart.photo.local : cart.photo.absolute} height="50" width="50" className="rounded" /> {cart.name}</td>
+                                            <td>₹{cart.price}</td>
                                             <td>
                                                 <div className="input-group">
                                                     <button onClick={one.bind(this, cart.id, cart, "A")} className="btn btn-info">+</button>
@@ -150,21 +188,21 @@ const Mycart = () => {
                                                     <button onClick={one.bind(this, cart.id, cart, "B")} className="btn btn-info">-</button>
                                                 </div>
                                             </td>
-                                            <td>{cart.qty * cart.price}</td>
+                                            <td>₹{cart.qty * cart.price}</td>
                                             <td><button onClick={deleteCart.bind(this, cart.id)} className=" btn-sm btn btn-danger">Remove From Cart</button></td>
                                         </tr>
                                     )
                                 })
                             }
                             <tr>
-                                <td>SGST - {total * 9 / 100}</td>
-                                <td>CGST - {total * 9 / 100}</td>
-                                <td colSpan="2">GST Amount - {(total * 9 / 100) + (total * 9 / 100)}</td>
-                                <td colSpan="2" className="">Rs. {total} </td>
+                                <td>SGST: <br /> ₹{total * 9 / 100}</td>
+                                <td>CGST: ₹{total * 9 / 100}</td>
+                                <td colSpan="2">GST Amount: ₹{(total * 9 / 100) + (total * 9 / 100)}</td>
+                                <td colSpan="2" className="">₹{total} </td>
                             </tr>
                             <tr>
                                 <td className="text-center" colSpan="6">
-                                    {total + (total * 18 / 100)} : Total Amount to Pay
+                                    Total Amount to Pay: ₹{total + (total * 18 / 100)}
                                 </td>
                             </tr>
                         </tbody>
