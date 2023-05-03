@@ -1,20 +1,62 @@
 import { useState } from "react";
+import Swal from "sweetalert2";
+
 const Signup = () => {
     let [msg, updatemsg] = useState("Enter details to create an admin account");
     let [fullname, pickFullname] = useState("");
-    let [username, pickUsername] = useState("");
-    let [pass, pickPassword] = useState("");
+    let [email, pickEmail] = useState("");
+    let [password, pickPassword] = useState("");
+    let [confirmPass, pickConfirmPass] = useState("");
+    let [passErrorMsg, updatePasswordErrorMsg] = useState("");
+    let [emailErrorMsg, updateEmailErrorMsg] = useState("")
+    let epattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+    const sweetAlert = (data) => {
+        Swal.fire({
+            title: "Success",
+            text: data,
+            icon: "success",
+            confirmButtonText: "OK",
+            timer: 7000,
+            timerProgressBar: true
+
+        });
+    }
+    const sweetAlert2 = (text) => {
+        Swal.fire({
+            title: 'Oops...',
+            text: text,
+            icon: 'error',
+            confirmButtonColor: '#dc3545', // Set the color of the confirm button
+            confirmButtonText: 'OK' // Set the label of the confirm button
+        })
+    }
 
     const goSignup = () => {
-        if (username == "" || pass == "" || fullname == "") {
-            alert("Field cannot be left blank")
+        let formstatus = true;
+        if (email == "" || password == "" || fullname == "") {
+            sweetAlert2("All fields are compulsory")
+            formstatus = false;
+        }
+        if (!epattern.test(email) || email == "") {
+            updateEmailErrorMsg("Invalid Email ID")
+            formstatus = false;
         } else {
+            updateEmailErrorMsg("")
+        }
+        if (password !== confirmPass) {
+            updatePasswordErrorMsg("Passwords don't match")
+            formstatus =false
+        }else{
+            updatePasswordErrorMsg("")
+        }
+        if (formstatus === true) {
             updatemsg("Please wait Validating...");
             let url = "https://shopping-api-ypz4.onrender.com/account/";
             let adminData = {
                 fullname: fullname,
-                email: username,
-                password: pass
+                email: email,
+                password: password
             }
             let postOption = {
                 headers: { 'Content-Type': 'application/json' },
@@ -24,7 +66,7 @@ const Signup = () => {
             fetch(url, postOption)
                 .then(response => response.json())
                 .then(serverRes => {
-                    alert(`Welcome ${fullname}! Your account has been created. You can Login now!`)
+                    sweetAlert(`Welcome ${fullname}! Your account has been created. You can Login now!`)
                     let inputs = document.querySelectorAll("input");
                     inputs.forEach(input => input.value = '');
                 })
@@ -41,19 +83,24 @@ const Signup = () => {
                         </div>
                         <div className="card-body">
                             <div className="mb-3">
-                                <label>Full Name</label>
+                                <label>Full Name <span className="text-danger">*</span></label>
                                 <input className="form-control" type="text"
                                     onChange={obj => pickFullname(obj.target.value)} />
                             </div>
                             <div className="mb-3">
-                                <label>Email ID</label>
+                                <label>Email ID <span className="text-danger">*</span><span className="text-danger"> {emailErrorMsg}</span></label>
                                 <input className="form-control" type="email"
-                                    onChange={obj => pickUsername(obj.target.value)} />
+                                    onChange={obj => pickEmail(obj.target.value)} />
                             </div>
                             <div className="mb-3">
-                                <label>Password</label>
+                                <label>Password <span className="text-danger">*</span></label>
                                 <input className="form-control" type="password"
                                     onChange={obj => pickPassword(obj.target.value)} />
+                            </div>
+                            <div className="mb-3">
+                                <label>Confirm Password <span className="text-danger">*</span> <span className="text-danger">{passErrorMsg}</span></label>
+                                <input className="form-control" type="password"
+                                    onChange={obj => pickConfirmPass(obj.target.value)} />
                             </div>
                         </div>
                         <div className="card-footer text-center">
