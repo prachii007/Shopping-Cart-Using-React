@@ -163,11 +163,3 @@ const Mycart = () => {
     )
 }
 export default Mycart;
-
-/* fetch data from cart api and display in cart page
-Note:
-cart page
-row
-col-5 = empty
-col-7 = display cart in table format
-*/
