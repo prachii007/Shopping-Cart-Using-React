@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 const Mycart = () => {
     let [allcart, updateCart] = useState([]);
     const getCart = () => {
@@ -34,12 +35,24 @@ const Mycart = () => {
             deleteCart(pid);
         }
     }
+
+    const sweetAlert2 = (text) => {
+        Swal.fire({
+            title: 'Oops...',
+            text: text,
+            icon: 'error',
+            confirmButtonColor: '#dc3545', // Set the color of the confirm button
+            confirmButtonText: 'OK' // Set the label of the confirm button
+        })
+    }
+
     const deleteCart = (pid) => {
         let url = "https://shopping-api-ypz4.onrender.com/cart/" + pid;
         let postOption = { method: "DELETE" };
         fetch(url, postOption)
             .then(response => response.json())
             .then(serverRes => {
+                sweetAlert2("Item removed from the cart")
                 getCart(); //reload the list
             })
     }
