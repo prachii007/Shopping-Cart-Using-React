@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import Swal from "sweetalert2";
 const Newproduct = () => {
     let [pname, pickName] = useState("");
     let [pprice, pickPrice] = useState("");
@@ -7,11 +8,21 @@ const Newproduct = () => {
     let [pdetails, pickDetails] = useState("");
     let [pphotoType, pickPhotoType] = useState("");
 
+    const sweetAlert2 = (text) => {
+        Swal.fire({
+            title: 'Oops...',
+            text: text,
+            icon: 'error',
+            confirmButtonColor: '#dc3545', // Set the color of the confirm button
+            confirmButtonText: 'OK' // Set the label of the confirm button
+        })
+    }
+
     const save = () => {
         let formstatus = true;
         if (pname === "" || pprice === "" | pphoto === "" || pdetails === "") {
             formstatus = false;
-            alert("All fields are compulsory")
+            sweetAlert2("All fields are compulsory")
         }
         if (formstatus === true) {
             let sellerid = localStorage.getItem("sellerid");
