@@ -36,7 +36,7 @@ const Myproduct = () => {
                                 <th>Price</th>
                                 <th>Details</th>
                                 <th>Photo</th>
-                                <th>Action</th>
+                                <th className="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
