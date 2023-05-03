@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
+import Swal from "sweetalert2";
 const Myhome = () => {
     //fetch data of the product array form the api by making a GET Request,
     //parse the data into json
@@ -16,6 +17,17 @@ const Myhome = () => {
         getProduct();
     }, [1]);
 
+    const sweetAlert = (data) => {
+        Swal.fire({
+            title: "Success",
+            text: data,
+            icon: "success",
+            confirmButtonText: "OK",
+            timer: 7000,
+            timerProgressBar: true
+
+        });
+    }
     const addtocart = (product) => { //product is the individual element of the allproduct array, it an object that has details of each product
         product["qty"] = 1; //add a new key-value pair to the product object
         //Make a POST request to the api
@@ -29,7 +41,7 @@ const Myhome = () => {
         fetch(url, postOption)
             .then(response => response.json)
             .then(serverStatus => {
-                alert("Item added in cart");
+                sweetAlert(`"${product.name}" added to cart`);
             })
     }
     //search bar
