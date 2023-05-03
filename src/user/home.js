@@ -65,7 +65,7 @@ const Myhome = () => {
                     <div className="col-lg-4"></div>
                     <div className="col-lg-4">
                         {/* capture the words that user types in the search bar.*/}
-                        <input onChange={obj => updateKeyword(obj.target.value)} className="form-control" type="text" placeholder="Search here" />
+                        <input onChange={obj => updateKeyword(obj.target.value)} className="form-control" type="text" placeholder="Search Products By Name" />
                     </div>
                     <div className="col-lg-4"></div>
                 </div>
