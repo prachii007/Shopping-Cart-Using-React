@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import Swal from "sweetalert2";
 const Myproduct = () => {
     let [allproduct, updateProduct] = useState([]);
     const getProduct = () => {
@@ -14,12 +15,24 @@ const Myproduct = () => {
     useEffect(() => {
         getProduct();
     }, [1]);
+
+    const sweetAlert2 = (text) => {
+        Swal.fire({
+            title: 'Oops...',
+            text: text,
+            icon: 'error',
+            confirmButtonColor: '#dc3545', // Set the color of the confirm button
+            confirmButtonText: 'OK' // Set the label of the confirm button
+        })
+    }
+
     const deleteProduct = (pid) => {
         let url = "https://shopping-api-ypz4.onrender.com/product/" + pid;
         let postOption = { method: "DELETE" };
         fetch(url, postOption)
             .then(response => response.json())
             .then(serverRes => {
+                sweetAlert2("Item was permanently deleted from the website")
                 getProduct();
             })
     }
