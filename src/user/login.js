@@ -26,7 +26,7 @@ const Login = () => {
     return (
         <section className="container mt-5">
             <div className="row">
-                <div className="col-lg-4"></div>
+                <div className="col-lg-2"></div>
                 <div className="col-lg-4">
                     <p className="text-center text-danger">{msg}</p>
                     <div className="card border-0 shadow-lg">
@@ -50,7 +50,36 @@ const Login = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-4"></div>
+                <div className="col-lg-4">
+                    <table className="table table-bordered mt-5">
+                        <caption className="text-success"><strong>NOTE:</strong> You can use the following predefined accounts and passwords to login</caption>
+                        <thead>
+                            <tr className="text-center">
+                                <th>Email ID</th>
+                                <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody className="text-center">
+                            <tr>
+                                <td>s1@gmail.com</td>
+                                <td>123</td>
+                            </tr>
+                            <tr>
+                                <td>s2@gmail.com</td>
+                                <td>123</td>
+                            </tr>
+                            <tr>
+                                <td>s3@gmail.com</td>
+                                <td>123</td>
+                            </tr>
+                            <tr>
+                                <td>pi@gmail.com</td>
+                                <td>123</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div className="col-lg-2"></div>
             </div>
         </section>
     )
